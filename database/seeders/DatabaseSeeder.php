@@ -2,24 +2,50 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
+// 👇 WAJIB IMPORT SEMUA SEEDER
+use Database\Seeders\UserSeeder;
+use Database\Seeders\ProfileSeeder;
+use Database\Seeders\SubscriptionSeeder;
+use Database\Seeders\CategorySeeder;
+use Database\Seeders\CourseSeeder;
+use Database\Seeders\CourseMentorSeeder;
+use Database\Seeders\LessonSeeder;
+use Database\Seeders\LessonVideoSeeder;
+use Database\Seeders\AssignmentSeeder;
+use Database\Seeders\EnrollmentSeeder;
+use Database\Seeders\LessonProgressSeeder;
+use Database\Seeders\VideoProgressSeeder;
+use Database\Seeders\SubmissionSeeder;
+use Database\Seeders\CertificateSeeder;
+use Database\Seeders\NotificationSeeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call([
+            UserSeeder::class,
+            ProfileSeeder::class,
+            SubscriptionSeeder::class,
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            CategorySeeder::class,
+            CourseSeeder::class,
+            CourseMentorSeeder::class,
+
+            LessonSeeder::class,
+            LessonVideoSeeder::class,
+            AssignmentSeeder::class,
+
+            EnrollmentSeeder::class,
+
+            LessonProgressSeeder::class,
+            VideoProgressSeeder::class,
+            SubmissionSeeder::class,
+
+            CertificateSeeder::class,
+            NotificationSeeder::class,
         ]);
     }
 }
