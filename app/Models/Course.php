@@ -32,5 +32,15 @@ public function certificates()
 {
  return $this->hasMany(Certificate::class);
 }
+public function zoomMeetings()
+{
+    return $this->hasMany(ZoomMeeting::class);
+}
+public function orders()
+{
+    return $this->hasMany(Order::class);
+}
+
+
 
 }

@@ -52,6 +52,11 @@ public function submissions()
 {
  return $this->hasMany(Submission::class);
 }
+public function orders()
+{
+    return $this->hasMany(Order::class);
+}
+
 
 public function certificates()
 {

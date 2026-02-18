@@ -20,6 +20,7 @@ use Database\Seeders\VideoProgressSeeder;
 use Database\Seeders\SubmissionSeeder;
 use Database\Seeders\CertificateSeeder;
 use Database\Seeders\NotificationSeeder;
+use Database\Seeders\ZoomMeetingSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -46,6 +47,7 @@ class DatabaseSeeder extends Seeder
 
             CertificateSeeder::class,
             NotificationSeeder::class,
+            ZoomMeetingSeeder::class,
         ]);
     }
 }
