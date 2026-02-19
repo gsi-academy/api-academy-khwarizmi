@@ -12,7 +12,7 @@ class LessonProgressSeeder extends Seeder
 {
     public function run(): void
     {
-        $student = User::where('role', 'student')->first();
+        $student = User::role('student')->first();
         $lesson  = Lesson::with('videos')->first();
 
         // progress per lesson

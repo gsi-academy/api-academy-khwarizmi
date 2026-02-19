@@ -9,11 +9,13 @@ use Illuminate\Database\Seeder;
 
 class SubmissionSeeder extends Seeder
 {
-    public function run(): void
-    {
-        $student = User::where('role', 'student')->first();
-        $assignment = Assignment::first();
+   public function run(): void
+{
+    $student = User::role('student')->first();
+    $assignment = Assignment::first();
 
+    // Pastikan kedua data ditemukan sebelum create
+    if ($student && $assignment) {
         Submission::create([
             'assignment_id' => $assignment->id,
             'user_id' => $student->id,
@@ -21,4 +23,5 @@ class SubmissionSeeder extends Seeder
             'score' => null,
         ]);
     }
+}
 }

@@ -45,7 +45,7 @@ class AdminStatsController extends Controller
         }
 
         // 🔹 Active Students
-        $activeStudents = User::where('role', 'student')->count();
+        $activeStudents = User::role('student')->count();
 
         // 🔹 Recent Transactions
         $recentTransactions = Order::with(['user:id,name', 'course:id,title'])

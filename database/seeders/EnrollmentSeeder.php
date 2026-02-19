@@ -11,7 +11,7 @@ class EnrollmentSeeder extends Seeder
     public function run(): void
     {
         Enrollment::create([
-            'user_id' => User::where('role','student')->first()->id,
+            'user_id' => User::role('student')->first()->id,
             'course_id' => Course::first()->id,
         ]);
     }

@@ -10,7 +10,7 @@ class SubscriptionSeeder extends Seeder
 {
     public function run(): void
     {
-        $student = User::where('role','student')->first();
+        $student = User::role('student')->first();
 
         Subscription::create([
             'user_id' => $student->id,

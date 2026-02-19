@@ -12,7 +12,7 @@ class CertificateSeeder extends Seeder
 {
     public function run(): void
     {
-        $student = User::where('role', 'student')->first();
+        $student = User::role('student')->first();
         $course = Course::first();
 
         Certificate::create([

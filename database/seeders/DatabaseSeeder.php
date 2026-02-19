@@ -21,12 +21,14 @@ use Database\Seeders\SubmissionSeeder;
 use Database\Seeders\CertificateSeeder;
 use Database\Seeders\NotificationSeeder;
 use Database\Seeders\ZoomMeetingSeeder;
+use Database\Seeders\RoleSeeder;
 
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
         $this->call([
+            RoleSeeder::class, // Seeder untuk membuat role Spatie
             UserSeeder::class,
             ProfileSeeder::class,
             SubscriptionSeeder::class,

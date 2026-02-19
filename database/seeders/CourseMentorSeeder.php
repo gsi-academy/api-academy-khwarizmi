@@ -1,17 +1,27 @@
 <?php
+
 namespace Database\Seeders;
+
 use App\Models\Course;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CourseMentorSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('course_mentors')->insert([
-            'course_id' => Course::first()->id,
-            'user_id' => User::where('role','mentor')->first()->id,
-        ]);
+        // Pastikan ada kursus dan ada user dengan role mentor
+        $course = Course::first();
+        
+        // CARA SPATIE: Mencari user yang memiliki role 'mentor'
+        $mentor = User::role('mentor')->first();
+
+        if ($course && $mentor) {
+            DB::table('course_mentors')->insert([
+                'course_id' => $course->id,
+                'user_id'   => $mentor->id,
+            ]);
+        }
     }
 }
