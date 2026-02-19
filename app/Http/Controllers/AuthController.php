@@ -42,28 +42,31 @@ class AuthController extends Controller
         ]);
     }
 
-    public function login(Request $r): JsonResponse|array
-    {
-        $credentials = $r->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+   public function login(Request $r)
+{
+    $credentials = $r->validate([
+        'email' => 'required|email',
+        'password' => 'required'
+    ]);
 
-        if (!Auth::attempt($credentials)) {
-            return response()->json(['msg' => 'Invalid Credentials'], 401);
-        }
-
-        $user = $r->user();
-        
-        return [
-            'token' => $user->createToken('auth')->plainTextToken,
-            'user' => [
-                'name' => $user->name,
-                'roles' => $user->getRoleNames()
-            ]
-        ];
+    if (!Auth::attempt($credentials)) {
+        return response()->json(['msg' => 'Invalid Credentials'], 401);
     }
 
+    $user = $r->user();
+    
+    return [
+        'token' => $user->createToken('auth')->plainTextToken,
+        'user' => [
+            'name' => $user->name,
+            'email' => $user->email,
+            // Method Spatie untuk mengambil semua nama role user
+            'roles' => $user->getRoleNames(), 
+            // Opsional: Jika ingin mengirim permission juga
+            'permissions' => $user->getAllPermissions()->pluck('name')
+        ]
+    ];
+}
     public function logout(Request $r): array
     {
         $r->user()->currentAccessToken()->delete();
