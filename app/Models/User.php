@@ -7,12 +7,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles; // Import Trait
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasApiTokens, HasFactory, Notifiable, HasRoles; // Tambahkan HasRoles
-
+    
     protected $fillable = [
         'name',
         'email',
@@ -57,6 +58,13 @@ public function certificates()
 {
  return $this->hasMany(Certificate::class);
 }
+
+public function lessons(): HasMany
+    {
+        // mentor_id adalah foreign key di tabel lessons
+        return $this->hasMany(Lesson::class, 'mentor_id');
+    }
+
 
 
     /**

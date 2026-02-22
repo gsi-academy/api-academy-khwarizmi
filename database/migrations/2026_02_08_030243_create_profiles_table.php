@@ -6,25 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-Schema::create('profiles', function (Blueprint $table) {
- $table->id();
- $table->foreignId('user_id')->constrained()->cascadeOnDelete();
- $table->string('phone')->nullable();
- $table->text('bio')->nullable();
- $table->string('avatar')->nullable();
- $table->timestamps();
-});
-
+        Schema::create('profiles', function (Blueprint $table) {
+            $table->id();
+            // Relasi ke tabel users
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            
+            // Kolom tambahan untuk profil
+            $table->string('avatar')->nullable(); // URL foto profil
+            $table->string('phone')->nullable();
+            $table->text('bio')->nullable();
+            
+            $table->timestamps();
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('profiles');

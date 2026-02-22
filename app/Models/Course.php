@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Course extends Model
 {
@@ -40,6 +42,18 @@ public function orders()
 {
     return $this->hasMany(Order::class);
 }
+public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+
+
+    // Relasi ke tabel enrollment (asumsi nama modelnya Enrollment)
+    public function enrollments(): HasMany
+    {
+        return $this->hasMany(Enrollment::class);
+    }
 
 
 

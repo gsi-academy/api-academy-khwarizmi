@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Lesson extends Model
 {
@@ -39,6 +41,10 @@ public function assignments()
 {
  return $this->hasMany(Assignment::class);
 }
+public function mentor(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'mentor_id');
+    }
 
 
 }
